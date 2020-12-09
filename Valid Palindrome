@@ -1,0 +1,50 @@
+Problem :
+Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+
+Note: For the purpose of this problem, we define empty string as valid palindrome.
+
+Example 1:
+
+Input: "A man, a plan, a canal: Panama"
+Output: true
+Example 2:
+
+Input: "race a car"
+Output: false
+ 
+
+Constraints:
+
+s consists only of printable ASCII characters.
+
+
+
+
+Solution :C#
+public class Solution {
+    public bool IsPalindrome(string s) {
+        if(string.IsNullOrEmpty(s))
+            return true;
+        if(s.Length==1)
+            return true;
+        
+        int f=0,sec=s.Length-1;
+        while(f<sec){
+           while(f<sec && !Char.IsLetterOrDigit(s[f]))f++;
+           while(f<sec && !Char.IsLetterOrDigit(s[sec]))sec--;
+           if(f>=sec)
+           {
+               return true;
+           }
+            if(!char.ToLower(s[f]).Equals(char.ToLower(s[sec])))
+            {
+                    return false;
+            }
+            
+            f++;
+            sec--;
+        }
+        return true;
+        
+    }
+}
